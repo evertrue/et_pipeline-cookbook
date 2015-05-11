@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  network:
+    - ["forwarded_port", {guest: 8080, host: 9090, auto_correct: true}]
+    - ["private_network", {ip: "33.33.33.10"}]
+  customize:
+    memory: 2048
+    cpus: 2
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[pipeline_test]
+      - recipe[et_pipeline::default]
+    attributes:
+      chef-zero:
+        start: true
+      pipeline:
+        template:
+          cookbook: pipeline_test

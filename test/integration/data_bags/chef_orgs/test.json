@@ -1,0 +1,12 @@
+{
+  "id": "chef_zero",
+  "chef_server_url": "http://0.0.0.0:80",
+  "client": "pipeline",
+  "pem": "ENTER KEY HERE\n",
+  "chef_repos": [
+    { 
+      "name": "evertrue-chef-repo", 
+      "url": "git@github.com:evertrue/server-chef.git"
+    }
+  ]
+}
