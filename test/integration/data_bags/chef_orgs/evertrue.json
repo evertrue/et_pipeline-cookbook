@@ -1,0 +1,12 @@
+{
+  "id": "evertrue",
+  "chef_server_url": "https://api.opscode.com/organizations/evertrue",
+  "client": "devops-ci-1b",
+  "pem": "",
+  "chef_repos": [
+    {
+      "name": "evertrue-chef-repo",
+      "url": "git@github.com:evertrue/server-chef.git"
+    }
+  ]
+}
