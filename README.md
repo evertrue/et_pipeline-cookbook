@@ -1,4 +1,3 @@
 # et_pipeline
 
-TODO: Enter the cookbook description here.
-
+Yeah, it's a wrapper cookbook.
