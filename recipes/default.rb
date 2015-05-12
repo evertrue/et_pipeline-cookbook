@@ -20,6 +20,10 @@ directory "#{node['jenkins']['master']['home']}/.ssh" do
   action :create
 end
 
+directory '/root/.ssh' do
+  mode 0700
+end
+
 # Populating a deploy key for root feels wrong but I'm not quite sure what to do
 # instead.
 ["#{node['jenkins']['master']['home']}/.ssh/id_rsa",
