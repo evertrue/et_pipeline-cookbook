@@ -20,16 +20,20 @@ directory "#{node['jenkins']['master']['home']}/.ssh" do
   action :create
 end
 
+file "#{node['jenkins']['master']['home']}/.ssh/id_rsa" do
+  mode    0600
+  owner   node['jenkins']['master']['user']
+  group   node['jenkins']['master']['group']
+  content data_bag_item('secrets', 'deploy_keys')['jenkins']
+end
+
 directory '/root/.ssh' do
   mode 0700
 end
 
 # Populating a deploy key for root feels wrong but I'm not quite sure what to do
 # instead.
-["#{node['jenkins']['master']['home']}/.ssh/id_rsa",
- '/root/.ssh/id_rsa'].each do |rsa_file|
-  file rsa_file do
-    mode    0600
-    content data_bag_item('secrets', 'deploy_keys')['jenkins']
-  end
+file '/root/.ssh/id_rsa' do
+  mode 0600
+  content data_bag_item('secrets', 'deploy_keys')['jenkins']
 end
