@@ -37,3 +37,13 @@ file '/root/.ssh/id_rsa' do
   mode 0600
   content data_bag_item('secrets', 'deploy_keys')['jenkins']
 end
+
+data_bag('chef_orgs').each do |org_name|
+  org = data_bag_item('chef_orgs', org_name)
+  r = resources(
+    file: "#{node['jenkins']['master']['home']}/.chef/#{org['client']}.pem"
+  )
+  r.content(
+    data_bag_item('secrets', 'jenkins')['chef_client_keys'][org['client']]
+  )
+end
