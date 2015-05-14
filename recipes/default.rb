@@ -47,3 +47,5 @@ data_bag('chef_orgs').each do |org_name|
     data_bag_item('secrets', 'jenkins')['chef_client_keys'][org['client']]
   )
 end
+
+include_recipe 'et_pipeline::candy'
